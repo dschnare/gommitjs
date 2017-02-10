@@ -26,5 +26,8 @@
   "engines": {
     "node": ">6"
   },
-  "$gommit": "/Users/darren/Workspace/darren/gommitjs/tools/gommit"
+  "$gommit": {
+    "path": "/Users/darren/Workspace/darren/gommitjs/tools/gommit",
+    "tag": "v2.0.0"
+  }
 }

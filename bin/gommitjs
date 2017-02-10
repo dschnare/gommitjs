@@ -8,18 +8,54 @@ const writeTemplate = require('../lib/writeTemplate')
 const gommit = getGommitBinaryPath()
 const args = process.argv.slice(2)
 
+// gommitjs gommit-path --help
+if (args[0] === 'gommit-path' && args.includes('--help')) {
+  console.log([
+    'Retrieves the path to the installed gommit binary',
+    '',
+    'Usage:',
+    '  gommitjs gommit-path'
+  ].join('\n'))
+// gommitjs init --help
+} else if (args[0] === 'init' && args.includes('--help')) {
+  console.log([
+    'Create the gommit config and git commit hook files for this project',
+    '',
+    'Usage:',
+    '  gommitjs init [flags]',
+    '',
+    'Flags:',
+    '  --overwrite      Determines if config and commit hook files should be overwritten'
+  ].join('\n'))
+// gommitjs update --help
+} else if (args[0] === 'update' && args.includes('--help')) {
+  console.log([
+    'Download a new version of the gommit binary',
+    '',
+    'Usage:',
+    '  gommitjs update [tag] [flags]',
+    '',
+    'Flags:',
+    '  --overwrite   Determines if the commit hook file should be overwritten',
+    '',
+    'Arguments:',
+    '  tag           The tag to download (default: "latest")'
+  ].join('\n'))
+// gommitjs gommit-path
+} else if (args[0] === 'gommit-path') {
+  console.log(getGommitBinaryPath())
 // gommitjs update [tag]
 //
 // Examples:
 // gommitjs update latest
 // gommitjs update v2.0.0
-if (args[0] === 'update') {
+} else if (args[0] === 'update') {
   const tag = args[1] || 'latest'
   const overwrite = args.includes('--overwrite')
 
-  installGommit(tag).then(({ binaryPath, tag }) => {
-    console.log(`gommit ${tag} installed at ${binaryPath}`)
-    return binaryPath
+  installGommit(tag).then(({ path, tag }) => {
+    console.log(`gommit ${tag} installed at ${path}`)
+    return path
   }).then(gommitPath => {
     return writeTemplate('commit-msg', { prefix: '.git/hooks', mode: 0o755, overwrite })
       .then(({ path, state }) => {
