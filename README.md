@@ -12,7 +12,7 @@ First create your project
 
 Then setup `gommitjs`
 
-    npm install gommitjs
+    npm install gommitjs --save-dev
     ./node_modules/.bin/gommitjs init
 
 The above commands will install the `gommitjs` NPM module and download the
