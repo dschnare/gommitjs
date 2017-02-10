@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "description": "A Nodejs wrapper for the gommit command line tool.",
   "main": "./lib/index.js",
+  "files": [
+    "templates",
+    "npm-scripts",
+    "lib",
+    "bin",
+    "LICENSE"
+  ],
   "directories": {
     "bin": "bin",
     "lib": "lib"
