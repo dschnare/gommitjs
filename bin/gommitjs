@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+
+const { spawn } = require('child_process')
+const getGommitBinaryPath = require('../lib/getGommitBinaryPath')
+const installGommit = require('../lib/installGommit')
+const writeTemplate = require('../lib/writeTemplate')
+
+const gommit = getGommitBinaryPath()
+const args = process.argv.slice(2)
+
+// gommitjs update [tag]
+//
+// Examples:
+// gommitjs update latest
+// gommitjs update v2.0.0
+if (args[0] === 'update') {
+  const tag = args[1] || 'latest'
+  const overwrite = args.includes('--overwrite')
+
+  installGommit(tag).then(({ binaryPath, tag }) => {
+    console.log(`gommit ${tag} installed at ${binaryPath}`)
+    return binaryPath
+  }).then(gommitPath => {
+    return writeTemplate('commit-msg', { prefix: '.git/hooks', mode: 0o755, overwrite })
+      .then(({ path, state }) => {
+        if (state === 'unmodified') {
+          console.log('Please ensure .git/hooks/commit-msg is using the following path to gommit: ' + gommitPath)
+        } else {
+          console.log(`git commit message hook written at ${path} : ${state}`)
+        }
+      })
+  }).catch(error => {
+    console.error(error)
+  })
+// gommitjs init [--overwrite]
+} else if (args[0] === 'init') {
+  const overwrite = args.includes('--overwrite')
+
+  Promise.all(
+    [
+      writeTemplate('.gommit.toml', { overwrite }),
+      writeTemplate('commit-msg', { prefix: '.git/hooks', mode: 0o755, overwrite })
+    ]
+  ).then(([config, hook]) => {
+    console.log(`gommit config written at ${config.path} : ${config.state}`)
+    console.log(`git commit message hook written at ${hook.path} : ${hook.state}`)
+  }).catch(error => {
+    console.error(error)
+  })
+// gommitjs [command] {options}
+// See: https://github.com/antham/gommit#usage
+} else {
+  spawn(gommit, args, {
+    cwd: process.cwd(),
+    stdio: 'inherit'
+  }).on('error', error => {
+    throw error
+  })
+}

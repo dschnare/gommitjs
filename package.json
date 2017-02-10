@@ -1,0 +1,30 @@
+{
+  "name": "gommitjs",
+  "version": "1.0.0",
+  "description": "A Nodejs wrapper for the gommit command line tool.",
+  "main": "./lib/index.js",
+  "directories": {
+    "bin": "bin",
+    "lib": "lib"
+  },
+  "bin": {
+    "gommitjs": "./bin/gommitjs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node ./npm-scripts/postinstall"
+  },
+  "keywords": [
+    "commit",
+    "standard",
+    "git",
+    "hook",
+    "message"
+  ],
+  "author": "Darren Schnare <schnare.d@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">6"
+  },
+  "$gommit": "/Users/darren/Workspace/darren/gommitjs/tools/gommit"
+}
