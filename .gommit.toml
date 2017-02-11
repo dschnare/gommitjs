@@ -1,9 +1,10 @@
 [config]
 exclude-merge-commits=true
-check-summary-length=true
+check-summary-length=false
 
 [matchers]
-all="(?:refactor|feature|test|fix|style|docs|chore)\\(.*?\\): .*?(?:\n|$)(?:\n.*?\n)*"
+simple="^(?:refactor|feature|test|fix|style|docs|chore)\\(.*?\\): .*?\n?$"
+extended="^(?:refactor|feature|test|fix|style|docs|chore)\\(.*?\\): .*?\n(?:\n[^#].*?\n)*\n*(?:# ?.*?(?:\n|$))*"
 
 [examples]
 a_simple_commit="""

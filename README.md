@@ -58,3 +58,64 @@ the [gommit docs](https://github.com/antham/gommit#practical-usage).
 
 This project will not have the same version as the `gommit` binary since any
 version of `gommit` should work with this wrapper.
+
+## API
+
+*gommit(args: []sring, { cwd }): Promise*
+
+Call gommit with the specified arguments.
+
+Example:
+
+   const { gommit } = require('gommitjs')
+   gommit([ 'version' ])
+    .then(version => console.log(version))
+    .catch(error => console.error(error.toString()))
+
+*gommit.version(): Promise*
+
+Retrieves the gommit version tag.
+
+Example:
+
+    const { gommit } = require('gommitjs')
+    gommit.version()
+      .then(version => console.log(version))
+      .catch(error => console.error(error.toString()))
+
+*gommit.checkCommit(commitHash): Promise*
+
+Check one comit from its commit ID (must be full commit ID).
+
+Example:
+
+    const { gommit } = require('gommitjs')
+    gommit.checkCommit('aeb603ba83614fae682337bdce9ee1bad1da6d6e')
+      .then(() => console.log('commit is properly formatted!')
+      .catch(error => console.error(error.toString()))
+
+*gommit.checkMessage(message): Promise*
+
+Check a commit message.
+
+Example:
+
+    const { gommit } = require('gommitjs')
+    gommit.checkMessage('Hello')
+      .then(() => console.log('message is properly formatted!')
+      .catch(error => console.error(error.toString()))
+
+*gommit.checkRange(refStart, refEnd): Promise*
+
+Check a commit range. Ranges can be any of the following values:
+
+- with relative references : `master~2^`, `master`
+- with asbolute references : `dev`, `test`
+- with commit ids : `7bbb37ade3ff36e362d7e20bf34a1325a15b`, `09f25db7971c100a8c0cfc2b22ab7f872ff0c18d`
+
+Example:
+
+    const { gommit } = require('gommitjs')
+    gommit.checkRange('master~2^', 'master')
+      .then(() => console.log('all commits are properly formatted!')
+      .catch(error => console.error(error.toString()))
