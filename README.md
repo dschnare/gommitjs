@@ -102,13 +102,20 @@ Example:
 
 **gommit(args: []sring, { cwd }): Promise**
 
-Call gommit with the specified arguments.
+Call gommit with the specified arguments just like you would at the command
+line.
 
 Example:
 
     const { gommit } = require('gommitjs')
     gommit([ 'version' ])
       .then(version => console.log(version))
+      .catch(error => console.error(error.toString()))
+
+    // Or to check a commit message and load a custom config file.
+    const message = 'Hello'
+    gommit([ 'check', 'message', message, '--config', 'my-config.toml' ])
+      .then(() => console.log())
       .catch(error => console.error(error.toString()))
 
 **gommit.version(): Promise**
@@ -122,9 +129,11 @@ Example:
       .then(version => console.log(version))
       .catch(error => console.error(error.toString()))
 
-**gommit.checkCommit(commitHash): Promise**
+**gommit.checkCommit(commitHash, { config } = {}): Promise**
 
-Check one comit from its commit ID (must be full commit ID).
+Check one commit from its commit ID (must be full commit ID). Optionally the
+path to the TOML, YAML or JSON config file to load can be specified. If no path
+is specified then by default `gommit` will load `./.gommit.toml`.
 
 Example:
 
@@ -133,9 +142,11 @@ Example:
       .then(() => console.log('commit is properly formatted!')
       .catch(error => console.error(error.toString()))
 
-**gommit.checkMessage(message): Promise**
+**gommit.checkMessage(message, { config } = {}): Promise**
 
-Check a commit message.
+Check a commit message. Optionally the path to the TOML, YAML or JSON config
+file to load can be specified. If no path is specified then by default `gommit`
+will load `./.gommit.toml`.
 
 Example:
 
@@ -144,13 +155,17 @@ Example:
       .then(() => console.log('message is properly formatted!')
       .catch(error => console.error(error.toString()))
 
-**gommit.checkRange(refStart, refEnd): Promise**
+**gommit.checkRange(refStart, refEnd, { config } = {}): Promise**
 
 Check a commit range. Ranges can be any of the following values:
 
 - with relative references : `master~2^`, `master`
 - with asbolute references : `dev`, `test`
 - with commit ids : `7bbb37ade3ff36e362d7e20bf34a1325a15b`, `09f25db7971c100a8c0cfc2b22ab7f872ff0c18d`
+
+Optionally the path to the TOML, YAML or JSON config file to load can be
+specified. If no path is specified then by default `gommit` will load
+`./.gommit.toml`.
 
 Example:
 
