@@ -89,6 +89,20 @@ Example:
       console.error(error)
     })
 
+**getGommitUrl(tag = 'latest'): Promise**
+
+Retrieves the download URL for the gommit binary for the specified tag.
+
+Example:
+
+    const gommitjs = require('gommitjs')
+    gommitjs.getGommitUrl().then(url => {
+      console.log(`gommit download url is ${url}`)
+    }).catch(error => {
+      // If the OS isn't supported or the download fails then an error is thrown
+      console.error(error)
+    })
+
 **getGommitBinaryPath({ url, prefix } = {}): Promise**
 
 Retrieves the path to the installed gommit binary.
@@ -98,6 +112,19 @@ Example:
     const gommitjs = require('gommitjs')
     gommitjs.getGommitBinaryPath().then(gommitPath => {
       console.log(`gommit installed at ${gommitPath}`)
+    })
+
+    // A path to the binary can be constructed if given the download URL and the
+    // prefix to where the binary is to be saved.
+    // NOTE: This interface is typically only used internally.
+    gommitjs.getGommitUrl('v2.0.0').then(url => {
+      const prefix = 'tools'
+      gommitjs.getGommitBinaryPath({ url, prefix }).then(gommitPath => {
+        console.log(`gommit installed at ${gommitPath}`)
+      }).catch(error => {
+        // Error will be thrown if OS is unsupported.
+        console.error(error)
+      })
     })
 
 **gommit(args: []sring, { cwd }): Promise**

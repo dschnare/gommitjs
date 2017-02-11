@@ -1,3 +1,9 @@
+# 1.3.0 - Feb 10, 2017
+
+Add getGommitUrl to API.
+
+Update API docs in README.
+
 # 1.2.0 - Feb 10, 2017
 
 Add --prefix flag to the update command.
