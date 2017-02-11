@@ -1,3 +1,12 @@
+# 1.4.1 - Feb 11, 2017
+
+Improve handling of gommit metadata.
+
+Remove $gommit from package.json.
+
+Fix getGommitBinaryPath so that it returns a Promise like documented in the
+README.
+
 # 1.4.0 - Feb 11, 2017
 
 Add support for OpenBSD and 32-bit and ARM architectures.

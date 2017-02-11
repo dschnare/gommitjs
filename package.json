@@ -1,6 +1,6 @@
 {
   "name": "gommitjs",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A Nodejs wrapper for the gommit command line tool.",
   "main": "./lib/index.js",
   "files": [
@@ -32,10 +32,6 @@
   "license": "MIT",
   "engines": {
     "node": ">=6"
-  },
-  "$gommit": {
-    "path": "/Users/darren/Workspace/darren/gommitjs/tools/gommit",
-    "tag": "v2.0.0"
   },
   "devDependencies": {
     "eslint": "^3.15.0",

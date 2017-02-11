@@ -1,4 +1,5 @@
 .DS_Store
+.gommit.meta.json
 
 .vscode
 node_modules

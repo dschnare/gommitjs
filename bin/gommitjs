@@ -44,7 +44,7 @@ if (args[0] === 'gommit-path' && args.includes('--help')) {
   ].join('\n'))
 // gommitjs gommit-path
 } else if (args[0] === 'gommit-path') {
-  console.log(getGommitBinaryPath())
+  getGommitBinaryPath().then(path => console.log(path))
 // gommitjs update [tag]
 //
 // Examples:
