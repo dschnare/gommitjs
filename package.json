@@ -1,6 +1,6 @@
 {
   "name": "gommitjs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Nodejs wrapper for the gommit command line tool.",
   "main": "./lib/index.js",
   "files": [
