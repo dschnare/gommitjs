@@ -4,23 +4,20 @@ check-summary-length=false
 
 [matchers]
 simple="^(?:refactor|feature|test|fix|style|docs|chore)\\(.*?\\): .*?\n?$"
-extended="^(?:refactor|feature|test|fix|style|docs|chore)\\(.*?\\): .*?\n(?:\n[^#].*?\n)*\n*(?:# ?.*?(?:\n|$))*"
+extended="^(?:refactor|feature|test|fix|style|docs|chore)\\(.*?\\): .*?\n+(?:[^#].*?\n+)*\n*(?:# ?.*?(?:\n|$))*"
 
 [examples]
 a_simple_commit="""
-[refactor|feature|test|fix|style|docs|chore](module): A commit message
+[feature|test|refactor|fix|style|docs|chore](module): A commit message
 """
 an_extended_commit="""
-[refactor|feature|test|fix|style|docs|chore](module): A commit message
+[feature|test|refactor|fix|style|docs|chore](module): A commit message
 
 first line
+or block
 
 second line
+or block
 
 and so on...
-
-# commented line
-# commented line
-# commented line
-#
 """

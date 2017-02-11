@@ -1,3 +1,7 @@
+# 1.4.2 - Feb 11, 2017
+
+Update gommit config so that commit message can contain blocks of text.
+
 # 1.4.1 - Feb 11, 2017
 
 Improve handling of gommit metadata.
