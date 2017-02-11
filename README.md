@@ -16,9 +16,10 @@ Then setup `gommitjs`
     ./node_modules/.bin/gommitjs init
 
 The above commands will install the `gommitjs` NPM module and download the
-`gommit` binary for your OS and save it under `./tools`. Then we initialize
-our project by creating a `.gommit.toml` config file if one doesn't exist and
-create a `.git/hooks/commit-msg` commit hook if one doesn't exist.
+`gommit` binary for your OS and save it under the
+`./node_modules/gommitjs/tools` folder. Then we initialize our project by
+creating a `.gommit.toml` config file if one doesn't exist and create a
+`.git/hooks/commit-msg` commit hook if one doesn't exist.
 
 NOTE: If you already have a `commit-msg` hook then you'll have to maintain this
 hook yourself, using the `gommit` binary to check messages:
@@ -28,6 +29,13 @@ hook yourself, using the `gommit` binary to check messages:
 The `gommit` binary path can be obtained by calling:
 
     ./node_modules/.bin/gommitjs gommit-path
+
+NOTE: If you prefer to install the `gommit` binary somewhere else then you can
+run the following.
+
+    ./node_modules/.bin/gommitjs update --prefix tools
+
+This will install the binary in the `./tools` folder.
 
 ## Usage
 

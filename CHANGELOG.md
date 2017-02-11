@@ -1,3 +1,11 @@
+# 1.2.0 - Feb 10, 2017
+
+Add --prefix flag to the update command.
+
+Update README to reflect new flag and default prefix.
+
+Remove old gommit binary when installing with a different prefix.
+
 # 1.1.3 - Feb 10, 2017
 
 Remove publish npm-script so the publish command is not ran twice.

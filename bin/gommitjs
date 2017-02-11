@@ -37,6 +37,7 @@ if (args[0] === 'gommit-path' && args.includes('--help')) {
     '',
     'Flags:',
     '  --overwrite   Determines if the commit hook file should be overwritten',
+    '  --prefix      The prefix to write the gommit binary to (default: tools folder in the gommitjs package folder)',
     '',
     'Arguments:',
     '  tag           The tag to download (default: "latest")'
@@ -50,10 +51,14 @@ if (args[0] === 'gommit-path' && args.includes('--help')) {
 // gommitjs update latest
 // gommitjs update v2.0.0
 } else if (args[0] === 'update') {
-  const tag = args[1] || 'latest'
+  const tag = args[1] && args[1][0] !== '-' ? args[1] : 'latest'
   const overwrite = args.includes('--overwrite')
+  const prefix = (function () {
+    const k = args.findIndex(arg => arg.startsWith('--prefix'))
+    return k > 0 ? (args[k].split('=')[1] || args[k + 1]) : null
+  }())
 
-  installGommit(tag).then(({ path, tag }) => {
+  installGommit(tag, { prefix }).then(({ path, tag }) => {
     console.log(`gommit ${tag} installed at ${path}`)
     return path
   }).then(gommitPath => {
