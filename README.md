@@ -91,6 +91,7 @@ directly.
 the system architecture.
 
 See: https://nodejs.org/dist/latest-v6.x/docs/api/os.html#os_os_platform
+
 See: https://nodejs.org/dist/latest-v6.x/docs/api/os.html#os_os_arch
 
 ## API
