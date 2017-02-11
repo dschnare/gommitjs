@@ -61,7 +61,38 @@ version of `gommit` should work with this wrapper.
 
 ## API
 
-*gommit(args: []sring, { cwd }): Promise*
+**installGommit(tag = 'latest', { prefix } = {}): Promise**
+
+Install the gommit binary for the current OS.
+
+Example:
+
+    const gommitjs = require('gommitjs')
+    gommitjs.installGommit('v2.0.0').then(result => {
+      console.log(`gommit ${result.tag} saved at ${result.path}`)
+    }).catch(error => {
+      console.error(error)
+    })
+
+    // Or to install the gommit binary to a different location.
+    gommitjs.installGommit('v2.0.0', { prefix: 'tools' }).then(result => {
+      console.log(`gommit ${result.tag} saved at ${result.path}`)
+    }).catch(error => {
+      console.error(error)
+    })
+
+**getGommitBinaryPath({ url, prefix } = {}): Promise**
+
+Retrieves the path to the installed gommit binary.
+
+Example:
+
+    const gommitjs = require('gommitjs')
+    gommitjs.getGommitBinaryPath().then(gommitPath => {
+      console.log(`gommit installed at ${gommitPath}`)
+    })
+
+**gommit(args: []sring, { cwd }): Promise**
 
 Call gommit with the specified arguments.
 
@@ -72,7 +103,7 @@ Example:
     .then(version => console.log(version))
     .catch(error => console.error(error.toString()))
 
-*gommit.version(): Promise*
+**gommit.version(): Promise**
 
 Retrieves the gommit version tag.
 
@@ -83,7 +114,7 @@ Example:
       .then(version => console.log(version))
       .catch(error => console.error(error.toString()))
 
-*gommit.checkCommit(commitHash): Promise*
+**gommit.checkCommit(commitHash): Promise**
 
 Check one comit from its commit ID (must be full commit ID).
 
@@ -94,7 +125,7 @@ Example:
       .then(() => console.log('commit is properly formatted!')
       .catch(error => console.error(error.toString()))
 
-*gommit.checkMessage(message): Promise*
+**gommit.checkMessage(message): Promise**
 
 Check a commit message.
 
@@ -105,7 +136,7 @@ Example:
       .then(() => console.log('message is properly formatted!')
       .catch(error => console.error(error.toString()))
 
-*gommit.checkRange(refStart, refEnd): Promise*
+**gommit.checkRange(refStart, refEnd): Promise**
 
 Check a commit range. Ranges can be any of the following values:
 
