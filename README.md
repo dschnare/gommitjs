@@ -106,10 +106,10 @@ Call gommit with the specified arguments.
 
 Example:
 
-   const { gommit } = require('gommitjs')
-   gommit([ 'version' ])
-    .then(version => console.log(version))
-    .catch(error => console.error(error.toString()))
+    const { gommit } = require('gommitjs')
+    gommit([ 'version' ])
+      .then(version => console.log(version))
+      .catch(error => console.error(error.toString()))
 
 **gommit.version(): Promise**
 
