@@ -22,7 +22,7 @@ The above commands will install the `gommitjs` NPM module and download the
 creating a `.gommit.toml` config file if one doesn't exist and create a
 `.git/hooks/commit-msg` commit hook if one doesn't exist.
 
-NOTE: If you already have a `commit-msg` hook then you'll have to maintain this
+*NOTE:* If you already have a `commit-msg` hook then you'll have to maintain this
 hook yourself, using the `gommit` binary to check messages:
 
     %gommit_path% check message "$(cat "$1")";
@@ -31,7 +31,7 @@ The `gommit` binary path can be obtained by calling:
 
     ./node_modules/.bin/gommitjs gommit-path
 
-NOTE: If you prefer to install the `gommit` binary somewhere else then you can
+*NOTE:* If you prefer to install the `gommit` binary somewhere else then you can
 run the following.
 
     ./node_modules/.bin/gommitjs update --prefix tools
@@ -68,6 +68,31 @@ the [gommit docs](https://github.com/antham/gommit#practical-usage).
 This project will not have the same version as the `gommit` binary since any
 version of `gommit` should work with this wrapper.
 
+## OS Support
+
+The following OSs are supported on 32 and 64-bit architecture:
+
+- OSX
+- Windows
+- Linux
+- FreeBSD
+- OpenBSD
+
+The following OSs are supported on an ARM architecture:
+
+- Linux
+- FreeBSD
+- OpenBSD
+
+For NetBSD support please use [gommit](https://github.com/antham/gommit)
+directly.
+
+*NOTE:* The `os` module provided by Nodejs is used to determine the platform and
+the system architecture.
+
+See: https://nodejs.org/dist/latest-v6.x/docs/api/os.html#os_os_platform
+See: https://nodejs.org/dist/latest-v6.x/docs/api/os.html#os_os_arch
+
 ## API
 
 **installGommit(tag = 'latest', { prefix } = {}): Promise**
@@ -100,7 +125,7 @@ Example:
     gommitjs.getGommitUrl().then(url => {
       console.log(`gommit download url is ${url}`)
     }).catch(error => {
-      // Error will be thrown if OS is unsupported.
+      // Error will be thrown if OS or architecture is unsupported.
       console.error(error)
     })
 
@@ -121,7 +146,7 @@ Example:
     gommitjs.getGommitUrl('v2.0.0').then(url => {
       return gommitjs.getGommitBinaryPath({ url, prefix: 'tools' })
     }).catch(error => {
-      // Error will be thrown if OS is unsupported.
+      // Error will be thrown if OS or architecture is unsupported.
       console.error(error)
     }).then(gommitPath => {
       console.log(`gommit installed at ${gommitPath}`)

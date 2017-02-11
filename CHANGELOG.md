@@ -1,3 +1,7 @@
+# 1.4.0 - Feb 11, 2017
+
+Add support for OpenBSD and 32-bit and ARM architectures.
+
 # 1.3.0 - Feb 10, 2017
 
 Add getGommitUrl to API.
