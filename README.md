@@ -9,6 +9,7 @@ First create your project
     mkdir my-project
     cd my-project
     git init
+    npm init --yes
 
 Then setup `gommitjs`
 
@@ -99,7 +100,7 @@ Example:
     gommitjs.getGommitUrl().then(url => {
       console.log(`gommit download url is ${url}`)
     }).catch(error => {
-      // If the OS isn't supported or the download fails then an error is thrown
+      // Error will be thrown if OS is unsupported.
       console.error(error)
     })
 
@@ -118,13 +119,12 @@ Example:
     // prefix to where the binary is to be saved.
     // NOTE: This interface is typically only used internally.
     gommitjs.getGommitUrl('v2.0.0').then(url => {
-      const prefix = 'tools'
-      gommitjs.getGommitBinaryPath({ url, prefix }).then(gommitPath => {
-        console.log(`gommit installed at ${gommitPath}`)
-      }).catch(error => {
-        // Error will be thrown if OS is unsupported.
-        console.error(error)
-      })
+      return gommitjs.getGommitBinaryPath({ url, prefix: 'tools' })
+    }).catch(error => {
+      // Error will be thrown if OS is unsupported.
+      console.error(error)
+    }).then(gommitPath => {
+      console.log(`gommit installed at ${gommitPath}`)
     })
 
 **gommit(args: []sring, { cwd }): Promise**
