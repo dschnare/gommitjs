@@ -1,3 +1,7 @@
+# 1.1.3 - Feb 10, 2017
+
+Remove publish npm-script so the publish command is not ran twice.
+
 # 1.1.2 - Feb 10, 2017
 
 Add missing API docs to README.
