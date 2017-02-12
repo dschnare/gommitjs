@@ -1,6 +1,6 @@
 {
   "name": "gommitjs",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "A Nodejs wrapper for the gommit command line tool.",
   "main": "./lib/index.js",
   "files": [
@@ -16,6 +16,13 @@
   },
   "bin": {
     "gommitjs": "./bin/gommitjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dschnare/gommitjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dschnare/gommitjs/issues"
   },
   "scripts": {
     "test": "mocha ./lib/**/*.test.js",

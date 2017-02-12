@@ -1,3 +1,7 @@
+# 1.4.3 - Feb 11, 2017
+
+Add repository and bugs keys to package.json.
+
 # 1.4.2 - Feb 11, 2017
 
 Update gommit config so that commit message can contain blocks of text.
